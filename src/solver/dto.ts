@@ -1,5 +1,5 @@
 import {
-	IGraph, TGraphId,
+	IGraph, TNodeId,
 } from "../internal";
 export interface IProblem {
 	solver: ESolver,
@@ -8,7 +8,7 @@ export interface IProblem {
 	finish: string
 }
 export interface ISolution {
-	path: TGraphId[],
+	path: TNodeId[],
 	cost: number
 }
 export enum ESolver {

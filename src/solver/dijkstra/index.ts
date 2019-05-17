@@ -1,8 +1,8 @@
 import {
 	IProblem, ISolution,
-	TGraphEdgeMap, TGraphId, TGraphNodeMap
+	TGraphEdgeMap, TNodeId, TGraphNodeMap
 } from "../../internal";
-type TNodeIdMap = Map<TGraphId, TGraphId>;
+type TNodeIdMap = Map<TNodeId, TNodeId>;
 export const dijkstra = (problem: IProblem): ISolution => {
 	const lowestCostNodes = getInitialLowestCosts(problem);
 	const bestPreviousNodes = getInitialBestPreviousNodes(problem);
@@ -13,7 +13,7 @@ export const dijkstra = (problem: IProblem): ISolution => {
 		path: bestPath
 	}
 };
-const getBestPath = (startId: TGraphId, finishId: TGraphId, bestPreviousNodes: TNodeIdMap) => {
+const getBestPath = (startId: TNodeId, finishId: TNodeId, bestPreviousNodes: TNodeIdMap) => {
 	const bestPathReverse = [finishId];
 	let previousNodeId = bestPreviousNodes.get(finishId);
 	// TODO: kein Weg zum Ziel!
@@ -28,7 +28,7 @@ const getBestPath = (startId: TGraphId, finishId: TGraphId, bestPreviousNodes: T
  * Calculates cheapest ways to each node and stores its previous nodes
  */
 const processEdges = (nodes: TGraphNodeMap, lowestCostNodes: TGraphEdgeMap, bestPreviousNodes: TNodeIdMap) => {
-	const processedNodeIds: TGraphId[] = [];
+	const processedNodeIds: TNodeId[] = [];
 	let lowestCostNodeId = getLowestCostNodeId(lowestCostNodes, processedNodeIds);
 	/* Runs until getLowestCostNode returns null */
 	while(lowestCostNodeId) {
@@ -62,11 +62,11 @@ const getInitialBestPreviousNodes = (problem: IProblem): TNodeIdMap => {
 	}
 	return bestPreviousNodes;
 };
-const getLowestCostNodeId = (lowestCostNodes: TGraphEdgeMap, processedNodeIds: TGraphId[]) => {
-	return Array.from(lowestCostNodes).reduce((lowestCostNodeId: TGraphId, [
+const getLowestCostNodeId = (lowestCostNodes: TGraphEdgeMap, processedNodeIds: TNodeId[]) => {
+	return Array.from(lowestCostNodes).reduce((lowestCostNodeId: TNodeId, [
 		nodeId,
 		cost
-	]: [TGraphId, number]) => {
+	]: [TNodeId, number]) => {
 		if(lowestCostNodeId === null || cost < lowestCostNodes.get(lowestCostNodeId)) {
 			if(!processedNodeIds.includes(nodeId)) {
 				lowestCostNodeId = nodeId

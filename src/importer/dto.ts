@@ -11,13 +11,13 @@ export interface IImportGraph {
 	edges: IImportGraphEdge[]
 }
 export interface IGraphNode {
-	id: TGraphId,
+	id: TNodeId,
 	label: string,
 	edges: TGraphEdgeMap
 }
 export interface IGraph {
 	nodes: TGraphNodeMap
 }
-export type TGraphId = string;
-export type TGraphNodeMap = Map<TGraphId, IGraphNode>;
-export type TGraphEdgeMap = Map<TGraphId, number>;
+export type TNodeId = string;
+export type TGraphNodeMap = Map<TNodeId, IGraphNode>;
+export type TGraphEdgeMap = Map<TNodeId, number>;

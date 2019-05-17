@@ -1,6 +1,6 @@
-import {IGraph, IProblem, ISolution, TGraphId} from "../../internal";
-type TDistanceMatrix = Map<TGraphId, Map<TGraphId, number>>;
-type TNodePath = Map<TGraphId, Map<TGraphId, TGraphId>>;
+import {IGraph, IProblem, ISolution, TNodeId} from "../../internal";
+type TDistanceMatrix = Map<TNodeId, Map<TNodeId, number>>;
+type TNodePath = Map<TNodeId, Map<TNodeId, TNodeId>>;
 export const floydWarshall = (problem: IProblem) :ISolution => {
 	const {
 		graph,
@@ -31,7 +31,7 @@ export const floydWarshall = (problem: IProblem) :ISolution => {
 		path: getPathTo(nodePath, start, finish)
 	};
 };
-const getPathTo = (nodePath: TNodePath, start: TGraphId, finish: TGraphId): TGraphId[] => {
+const getPathTo = (nodePath: TNodePath, start: TNodeId, finish: TNodeId): TNodeId[] => {
 	if(nodePath.get(start).get(finish) === null) {
 		return []
 	}
