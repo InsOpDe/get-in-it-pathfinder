@@ -17,7 +17,9 @@ export interface IGraphNode {
 }
 export interface IGraph {
 	nodes: TGraphNodeMap
+	labelMap: TGraphLabelMap
 }
 export type TNodeId = string;
 export type TGraphNodeMap = Map<TNodeId, IGraphNode>;
+export type TGraphLabelMap = Map<string, TNodeId>;
 export type TGraphEdgeMap = Map<TNodeId, number>;

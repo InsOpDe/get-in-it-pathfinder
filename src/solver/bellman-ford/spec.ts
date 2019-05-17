@@ -6,7 +6,7 @@ import * as chaiAsPromised from "chai-as-promised";
 import "mocha";
 use(chaiAsPromised);
 const promiseReadFile = promisify(readFile);
-describe("Solver: Floyd Warshall", () => {
+describe("Solver: Bellman Ford", () => {
 	it("should solve path and cost from import", async () => {
 		/* Arrange */
 		const graphToImport: IImportGraph = JSON.parse(await promiseReadFile("./data/generatedGraph.json", "utf-8"));

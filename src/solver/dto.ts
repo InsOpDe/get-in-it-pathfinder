@@ -13,5 +13,6 @@ export interface ISolution {
 }
 export enum ESolver {
 	dijkstra,
-	floydWarshall
+	floydWarshall,
+	bellmanFord
 }
