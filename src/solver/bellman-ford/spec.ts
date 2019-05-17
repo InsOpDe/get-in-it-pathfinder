@@ -1,7 +1,7 @@
 import {expect, use} from "chai";
 import {readFile} from "fs";
 import {promisify} from "util";
-import {convert, floydWarshall, ESolver, IImportGraph, IProblem} from "../../internal";
+import {convert, bellmanFord, ESolver, IImportGraph, IProblem} from "../../internal";
 import * as chaiAsPromised from "chai-as-promised";
 import "mocha";
 use(chaiAsPromised);
@@ -21,7 +21,7 @@ describe("Solver: Floyd Warshall", () => {
 		const {
 			cost,
 			path
-		} = floydWarshall(problem);
+		} = bellmanFord(problem);
 		/* Assert */
 		expect(cost).to.be.eq(2.9460583961187536);
 		expect(path).to.be.eql([ "0", "932", "778", "240", "689", "294", "246" ]);
