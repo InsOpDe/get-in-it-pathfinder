@@ -12,5 +12,6 @@ export interface ISolution {
 	cost: number
 }
 export enum ESolver {
-	dijkstra
+	dijkstra,
+	floydWarshall
 }

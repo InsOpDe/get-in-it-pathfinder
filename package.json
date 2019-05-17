@@ -38,7 +38,7 @@
     "all": true
   },
   "scripts": {
-    "test:textcoverage": "nyc --reporter=text-summary mocha -r ts-node/register --slow 50 'src/*/**/spec.ts' --timeout 10000",
+    "test:textcoverage": "nyc --reporter=text-summary mocha -r ts-node/register --slow 50 'src/*/**/spec.ts' --timeout 1000000",
     "start": "node dist/app.js",
     "buildAndStart": "tsc && node dist/app.js"
   }
