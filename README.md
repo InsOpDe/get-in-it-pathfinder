@@ -16,7 +16,7 @@ This code is my entry for the [Get-in-IT](https://www.get-in-it.de/coding-challe
 
 #### CLI
 Use it like this
-`node app.js --file ./data/generatedGraph.json --start Erde --end b3-r7-r4nd7 -a 0`
+`node dist/app.js --file data/generatedGraph.json --start Erde --end b3-r7-r4nd7 -a 0`
 
 where **`--file`** or **`-f`**  determines the the `JSON` to be used and has to be of following structure:
 ```JSON
