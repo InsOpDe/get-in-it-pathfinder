@@ -1,4 +1,11 @@
-import {bellmanFord, dijkstra, ESolver, floydWarshall, IProblem, ISolution} from "../internal";
+import {
+	bellmanFord,
+	dijkstra,
+	ESolver,
+	floydWarshall,
+	IProblem,
+	ISolution
+} from "../internal";
 export const solve = (problem: IProblem): ISolution => {
 	switch (problem.solver) {
 		case ESolver.dijkstra:

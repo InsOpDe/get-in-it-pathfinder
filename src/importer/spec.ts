@@ -1,10 +1,7 @@
 import { expect, use } from "chai";
 import { readFile } from "fs";
 import { promisify } from "util";
-import {
-	IImportGraph,
-	convert
-} from "../internal";
+import { IImportGraph, convert } from "../internal";
 import * as chaiAsPromised from "chai-as-promised";
 import "mocha";
 use(chaiAsPromised);
@@ -40,7 +37,9 @@ describe("Importer", () => {
 	});
 	it("should create a graph from import", async () => {
 		/* Arrange */
-		const graphToImport: IImportGraph = JSON.parse(await promiseReadFile("./data/generatedGraph.json", "utf-8"));
+		const graphToImport: IImportGraph = JSON.parse(
+			await promiseReadFile("./data/generatedGraph.json", "utf-8")
+		);
 		/* Act */
 		const graph = convert(graphToImport);
 		/* Assert */
@@ -52,5 +51,5 @@ describe("Importer", () => {
 		expect(graph.nodes.get("577").edges.get("0")).to.be.eq(0.9906129305526605);
 		expect(graph.nodes.get("0").edges.get("932")).to.be.eq(0.17459311924978604);
 		expect(graph.nodes.get("932").edges.get("0")).to.be.eq(0.17459311924978604);
-	})
+	});
 });

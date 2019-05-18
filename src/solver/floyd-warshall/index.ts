@@ -1,25 +1,17 @@
-import {IGraph, IProblem, ISolution, TNodeId} from "../../internal";
+import { IGraph, IProblem, ISolution, TNodeId } from "../../internal";
 type TDistanceMatrix = Map<TNodeId, Map<TNodeId, number>>;
 type TNodePath = Map<TNodeId, Map<TNodeId, TNodeId>>;
-export const floydWarshall = (problem: IProblem) :ISolution => {
-	const {
-		graph,
-		start,
-		finish
-	} = problem;
-	const [
-		distanceMatrix,
-		nodePath
-	] = createDistanceMatrix(graph);
+export const floydWarshall = (problem: IProblem): ISolution => {
+	const { graph, start, finish } = problem;
+	const [distanceMatrix, nodePath] = createDistanceMatrix(graph);
 	const nodeIds = Array.from(distanceMatrix.keys());
-	/* Fill 2d Array with zeroes */
-	for(const k of nodeIds) {
-		for(const i of nodeIds) {
-			for(const j of nodeIds) {
+	for (const k of nodeIds) {
+		for (const i of nodeIds) {
+			for (const j of nodeIds) {
 				const distanceIJ = distanceMatrix.get(i).get(j);
 				const distanceIK = distanceMatrix.get(i).get(k);
 				const distanceKJ = distanceMatrix.get(k).get(j);
-				if (distanceIJ > distanceIK + distanceKJ){
+				if (distanceIJ > distanceIK + distanceKJ) {
 					distanceMatrix.get(i).set(j, distanceIK + distanceKJ);
 					nodePath.get(i).set(j, nodePath.get(i).get(k));
 				}
@@ -31,19 +23,22 @@ export const floydWarshall = (problem: IProblem) :ISolution => {
 		path: getPathTo(nodePath, start, finish)
 	};
 };
-const getPathTo = (nodePath: TNodePath, start: TNodeId, finish: TNodeId): TNodeId[] => {
-	if(nodePath.get(start).get(finish) === null) {
-		return []
+const getPathTo = (
+	nodePath: TNodePath,
+	start: TNodeId,
+	finish: TNodeId
+): TNodeId[] => {
+	if (nodePath.get(start).get(finish) === null) {
+		return [];
 	}
-	const path = [ start ];
+	const path = [start];
 	let current = start;
-	while(current !== finish) {
-		if(nodePath.get(current)) {
+	while (current !== finish) {
+		if (nodePath.get(current)) {
 			current = nodePath.get(current).get(finish);
 			path.push(current);
-		}
-		/* If nodePath is null, this means that there is no path to target */
-		else {
+		} else {
+			/* If nodePath is null, this means that there is no path to target */
 			return [];
 		}
 	}
@@ -52,14 +47,12 @@ const getPathTo = (nodePath: TNodePath, start: TNodeId, finish: TNodeId): TNodeI
 const createDistanceMatrix = (graph: IGraph): [TDistanceMatrix, TNodePath] => {
 	const distanceMatrix: TDistanceMatrix = new Map();
 	const nodePath: TNodePath = new Map();
-	const {
-		nodes
-	} = graph;
+	const { nodes } = graph;
 	const nodeIds = Array.from(nodes.keys());
-	for(const i of nodeIds) {
+	for (const i of nodeIds) {
 		distanceMatrix.set(i, new Map());
 		nodePath.set(i, new Map());
-		for(const j of nodeIds) {
+		for (const j of nodeIds) {
 			const distanceIJ = nodes.get(i).edges.get(j);
 			if (i === j) {
 				distanceMatrix.get(i).set(j, 0);
@@ -72,8 +65,5 @@ const createDistanceMatrix = (graph: IGraph): [TDistanceMatrix, TNodePath] => {
 			}
 		}
 	}
-	return [
-		distanceMatrix,
-		nodePath
-	];
+	return [distanceMatrix, nodePath];
 };
