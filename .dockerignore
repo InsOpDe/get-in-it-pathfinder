@@ -1,0 +1,7 @@
+node_modules
+.gitignore
+Dockerfile
+README.md
+.nyc_output
+dist
+tslint.json

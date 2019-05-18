@@ -57,5 +57,12 @@ where **`--file`** or **`-f`**  determines the the `JSON` to be used and has to 
 * 1 is Dijkstra
 * 2 is Floyd Warshall
 
+#### Run with Docker
+Be sure to copy your `graph.json` into the data folder, before building the image. Otherwise you have to mount the folder with `-v` in order to access the data.
+
+Building the image: `docker build -t pathfinder .`
+
+Running the image: `docker run -i pathfinder`
+
 #### Tests
 In order to test everything one may run `num run test:textcoverage`
