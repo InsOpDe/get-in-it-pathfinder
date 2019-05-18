@@ -38,8 +38,14 @@ const getPathTo = (nodePath: TNodePath, start: TNodeId, finish: TNodeId): TNodeI
 	const path = [ start ];
 	let current = start;
 	while(current !== finish) {
-		current = nodePath.get(current).get(finish);
-		path.push(current);
+		if(nodePath.get(current)) {
+			current = nodePath.get(current).get(finish);
+			path.push(current);
+		}
+		/* If nodePath is null, this means that there is no path to target */
+		else {
+			return [];
+		}
 	}
 	return path;
 };

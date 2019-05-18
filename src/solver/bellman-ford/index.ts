@@ -41,7 +41,8 @@ const getPath = (previousNodes: TNodeMap, start: TNodeId, finish: TNodeId): TNod
 		path.push(currentNode);
 		currentNode = previousNodes.get(currentNode);
 	}
-	return path.reverse();
+	/* If path length equals 1 it means that no path is found */
+	return path.length === 1 ? [] : path.reverse();
 };
 const getEdges = (nodes: Map<TNodeId, IGraphNode>): IEdge[] => {
 	const edges: IEdge[] = [];
